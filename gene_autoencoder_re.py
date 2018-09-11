@@ -97,17 +97,29 @@ decoder = Dense(int(encoding_dim / 2), activation='tanh')(encoder)
 decoder = Dense(input_dim, activation='relu')(decoder)
 autoencoder = Model(inputs=input_layer, outputs=decoder)
 
-autoencoder.compile(optimizer='op', loss='mean_squared_error',
-                    metrics=['accuracy'])
-checkpointer = ModelCheckpoint(filepath="model.h5",
-                               verbose=0,
-                               save_best_only=True)
 tensorboard = TensorBoard(log_dir='./logs',
                           histogram_freq=0,
                           write_graph=True,
                           write_images=True)
+# build custom sampling function
+z = Lambda(sampling, output_shape = (latent_dim,)) # both z coded
+
+# Decoder
+decoder_reconstruct = Dense(original-dim, kernal_initializer='glo', activation = 'sigmoid')
+z_rescontruct = decoder_reconstruct(z)
+
+# connect encoder and decoder
+# connection not done
+# summary TO BE DONE
+adam = optimizers.Adam(lr=learning_rate)
+vae = Model(input, vae_layer)
+vae.compile(optimizer=adam, loss=None, loss_weights=[beta])
 
 
+
+
+# tarining NOT FINISHED
+"""
 history = autoencoder.fit(X_train, X_train,
                     epochs=nb_epoch,
                     batch_size=batch_size,
@@ -117,8 +129,6 @@ history = autoencoder.fit(X_train, X_train,
                     callbacks=[checkpointer, tensorboard]).history
 autoencoder = load_model('model.h5')
 
-
-"""
 # last build; not used
 # 3. Evaluation
 # weight = tf.multiply(4, tf.cast(tf.equal(labels, 3), tf.float32)) + 1
