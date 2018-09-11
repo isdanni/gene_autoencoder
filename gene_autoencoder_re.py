@@ -41,6 +41,19 @@ X_test = X_test.drop(['zero_percentage'], axis=1)
 X_train = X_train.values
 X_test = X_test.values
 
+def sampling(args):
+  # Function with args required for Keras Lambda function
+  z_mean, z_log_var = args
+  
+  # Draw epsilon of the same shape from a standard normal distribution
+  epsilon = K.random_normal(shape=tf.shape(z_mean), mean=0.,stddev=epsilon_std)
+  
+  # The latent vector is non-deterministic and differentiable
+  # in respect to z_mean and z_log_var
+  z = z_mean + K.exp(z_log_var / 2) * epsilon
+  return z
+  
+
 
 # 2. Design encoder & decoder
 encoding_dim1=5
