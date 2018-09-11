@@ -46,7 +46,7 @@ def sampling(args):
   z_mean, z_log_var = args
   
   # Draw epsilon of the same shape from a standard normal distribution
-  epsilon = K.random_normal(shape=tf.shape(z_mean), mean=0.,stddev=epsilon_std)
+  epsilon = K.random_normal(shape=tf.shape(z_mean), mean=0.5,stddev=epsilon_std)
   
   # The latent vector is non-deterministic and differentiable
   # in respect to z_mean and z_log_var
@@ -83,6 +83,7 @@ original_dim =
 latent_dim = 
 
 batc_size = 32 # most papers use a batch size of 512, 256, 128, 64, 32
+# larger size may lead to overfitting
 epochs = 100
 learning_rate=0.0005 # how to adjust?
 
