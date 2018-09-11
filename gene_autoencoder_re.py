@@ -9,6 +9,7 @@ from keras.layers import Dense
 from keras.models import Model, load_model
 
 
+####################################
 # 1. pre-process data
 # each row: count num of zeros & percentage
 # then drop the rows that percentage >= 0.75
@@ -76,11 +77,11 @@ class VariationalLayer(Layer):
         return x
 
       
-
+####################################
 # 2. Encoder & Decoder
 # set hyper parameters
-original_dim = 
-latent_dim = 
+original_dim = # ? original_dim
+latent_dim =   # input layer is compressed into a mean and log variance vector of size "latent_dim"
 
 batc_size = 32 # most papers use a batch size of 512, 256, 128, 64, 32
 # larger size may lead to overfitting
@@ -88,6 +89,7 @@ epochs = 100
 learning_rate=0.0005 # how to adjust?
 
 # Encoder
+# Input place holder for data with specific data size
 input_layer = Input(shape=(input_dim))
 encoder = Dense(encoding_dim, activation="tanh", activity_regularizer=regularizers.l1(10e-5))(input_layer)
 encoder = Dense(int(encoding_dim / 2), activation="relu")(encoder)
