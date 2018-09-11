@@ -54,8 +54,29 @@ def sampling(args):
   return z
   
 
+# add Loss Function
+class VariationalLayer(Layer):
+  """
+  using variational_autoencoder.py from Keras
+  """
+  def __init__(self, **kwargs):
+    self.is_placeholder = True
+    super(CustomVariationalLayer, self).__init__(**kwargs)
+    
+  def loss(self, x_input,x_encoded):
+    reconstruction_loss = original_dim * metrics.binary_crossentropy(x_input, x_decoded)
+    kl_loss = - 0.5 * K.sum(1 + z_log_var_encoded - K.square(z_mean_encoded) - K.exp(z_log_var_encoded), axis=-1)
+    return K.mean(reconstruction_loss + (K.get_value(beta) * kl_loss))
+  
+  def call(self, inputs):
+        x = inputs[0]
+        x_decoded = inputs[1]
+        loss = self.vae_loss(x, x_decoded)
+        self.add_loss(loss, inputs=inputs)
+        return x
 
-# 2. Design encoder & decoder
+
+# 2. Encoder & Decoder
 encoding_dim1=5
 encoding_dim=20  # layer of how many connected +
 
