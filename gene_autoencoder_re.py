@@ -75,11 +75,18 @@ class VariationalLayer(Layer):
         self.add_loss(loss, inputs=inputs)
         return x
 
+      
 
 # 2. Encoder & Decoder
-encoding_dim1=5
-encoding_dim=20  # layer of how many connected +
+# set hyper parameters
+original_dim = 
+latent_dim = 
 
+batc_size = 32 # as good default batch size to train neural nets
+epochs = 100
+learning_rate=0.0005 # how to adjust?
+
+# Encoder
 input_layer = Input(shape=(input_dim))
 encoder = Dense(encoding_dim, activation="tanh", activity_regularizer=regularizers.l1(10e-5))(input_layer)
 encoder = Dense(int(encoding_dim / 2), activation="relu")(encoder)
@@ -97,8 +104,6 @@ tensorboard = TensorBoard(log_dir='./logs',
                           write_graph=True,
                           write_images=True)
 
-nb_epoch = 100
-batch_size= 16
 
 history = autoencoder.fit(X_train, X_train,
                     epochs=nb_epoch,
