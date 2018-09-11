@@ -118,7 +118,7 @@ vae.compile(optimizer=adam, loss=None, loss_weights=[beta])
 
 
 
-# tarining NOT FINISHED
+# training NOT FINISHED
 """
 history = autoencoder.fit(X_train, X_train,
                     epochs=nb_epoch,
