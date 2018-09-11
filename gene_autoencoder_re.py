@@ -82,7 +82,7 @@ class VariationalLayer(Layer):
 original_dim = 
 latent_dim = 
 
-batc_size = 32 # as good default batch size to train neural nets
+batc_size = 32 # most papers use a batch size of 512, 256, 128, 64, 32
 epochs = 100
 learning_rate=0.0005 # how to adjust?
 
