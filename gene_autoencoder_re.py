@@ -30,7 +30,7 @@ print('Pre-process finished!')
 
 
 
-# now load the processed data
+# load the processed data
 df = pd.read_csv('/home/danni/Dropbox/CS/Code/gene_autoencoder/zeros_removed.csv',header=None)
 # split the data into training and testing data set
 X_train, X_test = train_test_split(data, test_size=0.2, random_state=RANDOM_SEED)
