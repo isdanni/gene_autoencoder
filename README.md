@@ -1,3 +1,3 @@
 # gene_autoencoder
 
-Autoencoder to preprocess human gene data
+Feature construction using autoencoder to fill empty gene data cells.
