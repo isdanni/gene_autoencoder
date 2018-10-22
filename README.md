@@ -1,6 +1,8 @@
 # gene_autoencoder
 
-Feature construction using autoencoder to fill empty gene cells.
+Feature construction using autoencoder to fill gene data cells cintaing 0 values.
 
-
-htcc1.cs.cityu.edu.hk
+*****************************************************************************************************************
+### Set up:
+High Throughtput Computing Cluster: htcc1.cs.cityu.edu.hk
+Python3 + Keras + TensorFlow as backend.
